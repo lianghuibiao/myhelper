@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- cityspace是命名空间，为Mapper接口的全限定名-->
+<mapper namespace="com.liang.helper.dao.UserDao">
+    <!-- resultMap标签：映射实体类与表
+         type属性：表示实体类全路径名
+         id属性：为实体类与表的映射取一个任意且唯一的名字
+    -->
+
+    <!--    <insert id="insert" parameterType="mybatis_test.Cities">
+            insert into cities values(#{id},#{city},#{province},#{country});
+        </insert>-->
+    <!-- Order selectOrderById(Integer id);-->
+    <!-- User selectUserById(Integer id); -->
+    <select id="selectUserById" resultType="com.liang.helper.beans.User" >
+              select * from user_msg where userID = #{UserId}
+    </select>
+
+    <!-- int registerUser(UserLogin user); 注册功能-->
+
+
+    <insert id="registerUser" parameterType="com.liang.helper.beans.UserLogin">
+            insert into user_login(user_name,user_phone_number,user_e_mail,user_password) values(#{UserName},#{UserPhoneNumber},#{UserEMail},#{UserPassword});
+    </insert>
+
+    <!--int insertUserMassage(UserLogin user);-->
+    <insert id="insertUserMassage" parameterType="com.liang.helper.beans.User">
+            insert into user_msg(user_name,user_phone_number,user_e_mail) values(#{UserName},#{UserPhoneNumber},#{UserEMail});
+    </insert>
+
+
+
+    <!--User selectUserIdByPhoneNumber(String PhoneNumber);-->
+    <select id="selectUserIdByPhoneNumber" resultType="com.liang.helper.beans.User" >
+              select userID from user_login where user_phone_number = #{PhoneNumber}
+    </select>
+
+    <!--User loginHelper(String UserPhoneNumber,String UserEMail,String UserPassword);-->
+    <!--登录接口  当账号/邮箱和密码同时正确 允许登录-->
+    <select id="loginHelper" resultType="com.liang.helper.beans.UserLogin" >
+              select * from user_login where user_phone_number = #{UserName} or user_e_mail=#{UserName} and user_password=#{UserPassword}
+    </select>
+
+
+    <!--UserLogin selectUserName(String UserName,String UserEMail);-->
+    <select id="selectUserName" resultType="com.liang.helper.beans.UserLogin" >
+              select * from user_login where user_phone_number = #{UserName} or user_e_mail=#{UserName}
+    </select>
+</mapper>

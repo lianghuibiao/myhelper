@@ -1,0 +1,17 @@
+server:
+  port: 8080
+#&&characterEncoding=UTF-8&&useUnicode=true&&useSSL=false
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/helper?serverTimezone=UTC
+    username: root
+    password: 1234
+  thymeleaf:
+    cache: true
+    prefix: classpath:/templates/
+    suffix: .html
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

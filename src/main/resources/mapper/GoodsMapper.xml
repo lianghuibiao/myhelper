@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- cityspace是命名空间，为Mapper接口的全限定名-->
+<mapper namespace="com.liang.helper.dao.GoodsDao">
+
+        <!--返回所有产品数据
+        Goods selectAllGoods();-->
+    <select id="selectAllGoods" resultType="com.liang.helper.beans.Goods" >
+              select * from goods
+    </select>
+
+
+<!--    根据id返回产品数据
+    Goods selectGoodsById(int GoodsID);-->
+    <select id="selectGoodsById" resultType="com.liang.helper.beans.Goods" >
+              select * from goods where goodsID=#{GoodsID}
+    </select>
+
+
+
+<!--   List<Goods> getGoodsByLikeName(String GoodName);  近似查找 -->
+    <select id="getGoodsByLikeName" resultType="com.liang.helper.beans.Goods">
+            select * from goods where goods_name like #{GoodName}
+    </select>
+
+
+
+</mapper>
