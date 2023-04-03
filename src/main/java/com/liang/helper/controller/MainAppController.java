@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/mainApp")
 public class MainAppController {
 
-
+String aaa;
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public String MainApp(@PathVariable("id") int id){
